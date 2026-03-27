@@ -34,7 +34,15 @@ public class TaskServiceUnitTests {
         for(int i = 1; i <= 5; i++) {
             taskService.addTask("task" + i);
         }
-
         assertThat(taskService.getAllTasks()).hasSize(5);
     }
+
+    @Test
+    void delete_task_should_remove_task_from_list() {
+        taskService.addTask("task1");
+        int id = taskService.getAllTasks().getFirst().getId();
+        taskService.deleteTask(id);
+        assertThat(taskService.getAllTasks()).isEmpty();
+    }
+
 }
