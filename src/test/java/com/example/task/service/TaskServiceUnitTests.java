@@ -1,6 +1,7 @@
 package com.example.task.service;
 
 import com.example.task.model.Task;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -45,4 +46,10 @@ public class TaskServiceUnitTests {
         assertThat(taskService.getAllTasks()).isEmpty();
     }
 
+    @Test
+    void initial_status_should_be_in_progress() {
+        taskService.addTask("Task1");
+        String description = taskService.getAllTasks().getFirst().getStatus();
+        Assertions.assertEquals("En cours", description);
+    }
 }
